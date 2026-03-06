@@ -165,6 +165,73 @@
     color: var(--dourado);
 }
 
+/* Carrinho Lateral */
+.carrinho-lateral {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Escondido */
+    width: 350px;
+    height: 100vh;
+    background: var(--creme);
+    border-left: 2px solid var(--dourado);
+    z-index: 2000;
+    transition: 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+}
+
+.carrinho-lateral.ativo {
+    right: 0; /* Desliza para dentro */
+}
+
+#overlay-carrinho {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    z-index: 1999;
+}
+
+.carrinho-cabecalho {
+    background: var(--castanho);
+    color: var(--dourado);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.botao-fechar {
+    background: none; border: none; color: var(--dourado);
+    font-size: 25px; cursor: pointer;
+}
+
+.carrinho-rodape {
+    padding: 20px;
+    border-top: 1px solid var(--dourado);
+}
+
+.botao-finalizar {
+    display: block;
+    background: var(--castanho);
+    color: var(--creme);
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    border: 1px solid var(--dourado);
+}
+
+.botao-finalizar:hover {
+    background: var(--dourado);
+    color: var(--castanho);
+}
+
+
+
 @media (max-width: 992px) {
   .cabecalho {
     padding: 1.25rem 4%;

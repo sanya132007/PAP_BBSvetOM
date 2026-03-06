@@ -34,7 +34,7 @@
                     <div class="cascata">
                         <button class="botao-cascata">MINHA CONTA</button>
                         <div class="cascata-conteudo"> <a href="area_cliente.php">ACEDER PERFIL</a>
-                            <a href="carrinho.php">VER CARRINHO</a>
+                            <a href="javascript:void(0)" onclick="abrirCarrinho()">VER CARRINHO</a>
                             <a href="../PROCESSOS/process_logout.php">SAIR</a>
                         </div>
                     </div>
@@ -45,6 +45,24 @@
             <?php endif; ?>
         </div>
     </nav>
+
+    <div id="carrinho-lateral" class="carrinho-lateral">
+        <div class="carrinho-cabecalho">
+            <span>O MEU CARRINHO</span>
+            <button onclick="fecharCarrinho()" class="botao-fechar">&times;</button>
+        </div>
+        
+        <div class="carrinho-corpo" id="conteudo-carrinho">
+            <p style="text-align:center; color:var(--castanho); margin-top:20px;">O seu carrinho está vazio.</p>
+        </div>
+
+        <div class="carrinho-rodape">
+            <div class="total">Total: 0.00€</div>
+            <a href="../carrinho.php" class="botao-finalizar">FINALIZAR COMPRA</a>
+        </div>
+    </div>
+
+    <div id="overlay-carrinho" onclick="fecharCarrinho()"></div>
 </header>
 
 <div class="navegacao-fundo"></div>

@@ -15,3 +15,13 @@ document.querySelectorAll('.navegacao a').forEach(link => {
         fundonavegacao.classList.remove('active');
     });
 });
+
+function abrirCarrinho() {
+    document.getElementById('carrinho-lateral').classList.add('ativo');
+    document.getElementById('overlay-carrinho').style.display = 'block';
+}
+
+function fecharCarrinho() {
+    document.getElementById('carrinho-lateral').classList.remove('ativo');
+    document.getElementById('overlay-carrinho').style.display = 'none';
+}
