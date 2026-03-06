@@ -1,4 +1,49 @@
 {
-    "liveServer.settings.port": 5501,
-    "php.validate.executablePath": "C:/laragon/bin/php/php-8.5.0-Win32-vs17-x64/php.exe"
+    "files.autoSave": "onWindowChange",
+    //guarda o site sempre que mudo de janela, para não perder alterações que eu faço sem querer.
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+    //isso apareceu sozinho (não me lembro de adicionar), inteligência artificial
+    "php.executables": {},
+    "php.debug.executablePath": "",
+    "php.validate.executablePath": "C:/laragon/bin/php/php-8.5.0-Win32-vs17-x64/php.exe",
+    //isso é a ligação do php para a pasta do Laragon
+    
+    //aqui em baixo são ferramentas/extenções do vs code
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "files.associations": {
+        "*.css": "css"
+    },
+
+    //isto é o terminal do laragon e git bash
+    "terminal.integrated.profiles.windows": 
+    {
+    "Laragon": 
+    {
+        "path": "C:\\laragon\\bin\\cmder\\cmder.exe",
+        "args": ["/START", "."]
+    },
+    "Git Bash":
+    {
+        "path": "C:\\Program Files\\Git\\bin\\bash.exe",
+        "args": ["--login", "-i"]
+    }
+    },
+
+    //basicamente terminal padrão é o laragon e ligação php
+    "terminal.integrated.defaultProfile.windows": "Laragon",
+    "terminal.integrated.env.windows": {
+    "PATH": "C:\\laragon\\bin;C:\\laragon\\bin\\php\\php-8.5.0-Win32-vs17-x64;${env:PATH}"
+},
+    "workbench.secondarySideBar.defaultVisibility": "visible",
+    "liveServer.settings.donotVerifyTags": true,
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }

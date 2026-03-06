@@ -1,0 +1,135 @@
+:root {
+    --dourado: #D1A75E;
+    --castanho: #4F3C2E;
+    --creme: #FAF2D9;
+    --branco: #ffffff;
+    --preto:#000000;
+    --cinza:#666;
+    --vermelho:#e74c3c;
+}
+
+
+* {
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+h1{
+    font-family: 'Playfair Display', serif; 
+}
+
+h2{
+    font-family: 'Playfair Display', serif; 
+}
+
+h3{
+    font-family: 'Playfair Display', serif; 
+}
+
+h4{
+    font-family: 'Playfair Display', serif; 
+}
+
+h5{
+    font-family: 'Playfair Display', serif; 
+}
+
+h6{
+    font-family: 'Playfair Display', serif; 
+}
+
+p{
+    font-family: 'Montserrat', sans-serif;
+}
+/*Estilo global*/
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--castanho);
+}
+
+.botao {
+    border-radius: 0;
+}
+
+main {
+    flex: 1;
+    padding-top: 60px;
+}
+
+.caixa{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    padding-bottom: 60px;
+    border-radius: 0;
+}
+
+.caixa .conteudo{
+    text-align: center;
+    border-radius: 0;
+}
+
+.caixa .conteudo h3{
+    font-size: 30px;
+    color: var(--dourado);
+}
+
+.caixa .conteudo h3 span{
+    background: var(--dourado);
+    color: white;
+    padding: 0 10px;
+}
+
+.caixa .conteudo h1{
+    font-size: 50px;
+    color: var(--castanho);
+}
+
+.caixa .conteudo h1 span{
+    color: white;
+}
+
+.caixa .conteudo p{
+    font-size: 20px;
+    color: var(--castanho);
+    margin-bottom: 20px;
+}
+
+.caixa .conteudo .botao{
+    width: 100%;
+    height: 48px;
+    box-shadow: 0 0 5px rgba(209, 167, 94,0.5);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    color: var(--creme);
+    font-weight: 600;
+    display: inline-block;
+    padding: 10px 30px;
+    font-size: 20px;
+    background-color: var(--castanho);
+    margin: 0 5px;
+}
+
+.caixa .conteudo .botao::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(250,242,217,0.55), transparent);
+    transition: 0.5s;
+}
+
+.caixa .conteudo .botao:hover::before{
+    left: 100%;
+}

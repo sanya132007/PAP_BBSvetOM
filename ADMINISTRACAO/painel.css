@@ -1,0 +1,101 @@
+/*cores BBSvetOM*/
+:root {
+    --dourado: #D1A75E;
+    --castanho: #4F3C2E;
+    --creme: #FAF2D9;
+    --branco: #ffffff;
+    --preto:#000000;
+    --cinza:#666;
+    --vermelho:#e74c3c;
+}
+/*corpo*/
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: var(--castanho); 
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+}
+
+.caixa-fundo {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: var(--creme);
+    border: 2.5px solid var(--dourado);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.39);
+    padding: 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.caixa-cima {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.index-link {
+    text-decoration: none; 
+    color: var(--castanho); 
+    font-weight: 600; 
+}
+
+
+.titulo-BBSvetOM{
+    color: var(--preto);
+    font-size: 60px;
+    text-decoration: none;
+    font-weight: 550;
+    cursor: default;
+    font-family: onyx, serif;
+}
+
+.botao{
+    width: 100%;
+    height: 48px;
+    background: var(--dourado);
+    box-shadow: 0 0 5px rgba(209, 167, 94,0.5);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-size: 16px;
+    color: var(--creme);
+    font-weight: 600;
+    border-radius: 0;
+
+}
+
+.botao::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(250,242,217,0.55), transparent);
+    transition: 0.5s;
+}
+
+.botao:hover::before{
+    left: 100%;
+}
+
+@media (max-width: 800px) {
+    body{
+        padding: 10px;
+    }
+    .caixa-fundo { padding: 15px 10px; }
+    .caixa-cabecalho { flex-direction: column; text-align: center; }
+}
+@media (max-width: 500px) { 
+    body{
+        padding: 10px;
+    }
+}

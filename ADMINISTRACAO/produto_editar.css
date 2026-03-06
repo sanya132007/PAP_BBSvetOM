@@ -1,0 +1,201 @@
+:root {
+    --dourado: #D1A75E;
+    --castanho: #4F3C2E;
+    --creme: #FAF2D9;
+    --branco: #ffffff;
+    --preto:#000000;
+    --cinza:#666;
+    --vermelho:#e74c3c;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: var(--castanho); 
+    display: block;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.caixa-fundo {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    background: var(--creme);
+    border: 2.5px solid var(--dourado);
+    padding: 40px;
+    box-sizing: border-box;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    border-radius: 0;
+}
+
+.caixa-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.titulo-produto {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    color: var(--castanho);
+}
+
+.link-voltar {
+    text-decoration: none;
+    color: var(--castanho);
+    font-weight: 600;
+}
+
+.submeter-caixa {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.submeter-caixa label {
+    font-weight: 600;
+    color: var(--castanho);
+}
+
+input[type="text"], input[type="number"], textarea, select, input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid rgba(79, 60, 46, 0.2);
+    background: var(--branco);
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+    border-radius: 0;
+}
+
+.caixa-ver-foto-escondido {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    border: 2px solid var(--dourado);
+    background: rgba(209, 167, 94, 0.05);
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+    min-height: 50px;
+    border-radius: 0;
+}
+
+.caixa-ver-texto {
+    font-size: 11px;
+    color: var(--dourado);
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.ver-foto {
+    width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border: 2px solid var(--castanho);
+    border-radius: 0;
+}
+
+.caixa-ver-galeria-foto, #caixa-ver-galeria-foto-painel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px;
+    justify-content: center;
+    border-radius: 0;
+}
+
+.caixa-ver-galeria-foto {
+    background: rgba(79, 60, 46, 0.05);
+    margin-bottom: 10px;
+}
+
+.foto-produto {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+}
+
+.ver-foto-galeiria {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border: 2px solid var(--castanho);
+    display:block;
+    border-radius: 0;
+}
+
+.botao-remover {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--vermelho);
+    color: var(--branco);
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    z-index: 10;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 0;
+}
+
+.botao {
+    width: 100%;
+    height: 48px;
+    background: var(--dourado);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-size: 14px;
+    color: var(--creme);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 0;
+}
+
+.botao::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(250,242,217,0.55), transparent);
+    transition: 0.5s;
+}
+
+.botao:hover::before { left: 100%; }
+
+@media (max-width: 800px) {
+    body{
+        padding: 10px;
+    }
+    .caixa-fundo { padding: 15px 10px; }
+    .caixa-cabecalho { flex-direction: column; text-align: center; }
+}
+@media (max-width: 600px) {
+    .caixa-fundo { padding: 25px 15px; }
+    .caixa-cabecalho { flex-direction: column; gap: 15px; }
+    .caixa-ver-galeria-foto, #caixa-ver-galeria-foto-painel { gap: 10px; }
+    .foto-produto { width: 100%; height: 100%; }
+}
+@media (max-width: 500px) { 
+    body{
+        padding: 10px;
+    }
+}
