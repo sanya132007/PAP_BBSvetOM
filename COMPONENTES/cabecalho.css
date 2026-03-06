@@ -1,305 +1,609 @@
 :root {
+
     --dourado: #D1A75E;
+
     --castanho: #4F3C2E;
+
     --creme: #FAF2D9;
+
     --branco: #ffffff;
+
     --preto:#000000;
+
     --cinza:#666;
+
     --vermelho:#e74c3c;
+
 }
 
+
+
 .cabecalho {
+
     position: fixed;
+
     top: 0;
+
     left: 0;
+
     width: 100%;
-    padding: 20px 5%; 
+
+    padding: 20px 5%;
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     box-sizing: border-box;
+
     background: rgba(255, 255, 255, 0.1);
+
     backdrop-filter: blur(20px);
+
     border-bottom: 2px solid rgba(255, 255, 255, .2);
+
     z-index: 100;
+
 }
+
+
+
+
+
 
 
 
 
 .cabecalho::before {
+
     content: '';
+
     position: absolute;
+
     top: 0;
+
     left: -100%;
+
     width: 100%;
+
     height: 100%;
+
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+
     transition: 0.5s;
+
 }
+
+
 
 .cabecalho:hover::before {
+
     left: 100%;
+
 }
+
+
 
 .logo {
+
     color: var(--dourado);
+
     font-size: 60px;
+
     text-decoration: none;
+
     font-weight: 550;
+
     cursor: default;
+
     font-family: onyx, serif;
+
 }
+
+
 
 .navegacao {
+
     display: flex;
+
     gap: 35px;
+
     padding-top: 0px;
+
 }
+
+
 
 .navegacao a {
+
     color: var(--creme);
+
     font-family: 'Playfair Display', serif;
+
     font-size: 20px;
+
     font-weight: 500;
+
     text-decoration: none;
+
     margin-left: 35px;
+
     display: inline-block;
+
     transition: 0.3s;
+
     justify-content: flex-end;
+
     align-items: center;
+
 }
+
+
 
 .navegacao a:hover {
+
     color: var(--dourado);
+
 }
+
+
 
 #menu-barras3 {
+
     display: none;
+
     cursor: pointer;
+
     z-index: 1001;
+
 }
+
+
 
 .barra1, .barra2, .barra3 {
+
     width: 30px;
+
     height: 3px;
+
     background-color: var(--dourado);
+
     margin: 6px 0;
+
     transition: 0.4s;
+
 }
+
+
 
 #menu-barras3.change .barra1 {
+
     transform: translate(0, 9px) rotate(-45deg);
+
 }
+
+
 
 #menu-barras3.change .barra2 {
+
     opacity: 0;
+
 }
+
+
 
 #menu-barras3.change .barra3 {
+
     transform: translate(0, -9px) rotate(45deg);
+
 }
+
+
 
 .cascata {
+
     position: relative;
+
     display: inline-block;
-    margin-left: 35px; 
+
+    margin-left: 35px;
+
 }
+
+
 
 .botao-cascata {
+
     background: none;
+
     color: var(--creme);
+
     font-size: 20px;
+
     text-decoration: none;
+
     border: none;
+
     cursor: pointer;
+
     font-family: 'Playfair Display', serif;
+
     font-weight: 500;
+
     padding: 0;
+
     transition: 0.3s;
+
     display: block;
+
 }
+
+
 
 .cascata-conteudo {
+
     display: none;
+
     position: absolute;
+
     background-color: var(--creme);
+
     min-width: 160px;
+
     box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+
     z-index: 1000;
+
     border: 1px solid var(--dourado);
+
     font-family: 'Montserrat', sans-serif;
+
     font-weight: 500;
+
     left: 50%;
-    transform: translateX(-50%); 
+
+    transform: translateX(-50%);
+
     top: 110%;
+
 }
+
+
 
 .cascata-conteudo a {
-    color: var(--castanho) !important; 
+
+    color: var(--castanho) !important;
+
     padding: 12px 16px;
+
     text-decoration: none;
+
     display: block;
-    margin-left: 0 !important; 
+
+    margin-left: 0 !important;
+
     font-size: 14px;
+
     text-align: center;
+
     border-bottom: 1px solid var(--dourado);
+
     width: 100%;
+
     box-sizing: border-box;
+
 }
+
+
 
 .cascata-conteudo a:last-child {
+
     border-bottom: none;
+
 }
+
+
 
 .cascata-conteudo a:hover {
+
     color: var(--dourado) !important;
+
     background-color: var(--castanho);
+
 }
+
+
 
 .cascata:hover .cascata-conteudo {
+
     display: block;
+
 }
+
+
 
 .cascata:hover .botao-cascata {
+
     color: var(--dourado);
+
 }
+
+
 
 /* Carrinho Lateral */
+
 .carrinho-lateral {
+
     position: fixed;
+
     top: 0;
+
     right: -400px; /* Escondido */
+
     width: 350px;
+
     height: 100vh;
+
     background: var(--creme);
+
     border-left: 2px solid var(--dourado);
+
     z-index: 2000;
+
     transition: 0.4s ease;
+
     display: flex;
+
     flex-direction: column;
+
     box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+
 }
+
+
 
 .carrinho-lateral.ativo {
+
     right: 0; /* Desliza para dentro */
+
 }
+
+
 
 #overlay-carrinho {
+
     position: fixed;
+
     top: 0; left: 0;
+
     width: 100%; height: 100%;
+
     background: rgba(0,0,0,0.5);
+
     display: none;
+
     z-index: 1999;
+
 }
+
+
 
 .carrinho-cabecalho {
+
     background: var(--castanho);
+
     color: var(--dourado);
+
     padding: 20px;
+
     display: flex;
+
     justify-content: space-between;
+
     font-weight: 600;
+
 }
+
+
 
 .botao-fechar {
+
     background: none; border: none; color: var(--dourado);
+
     font-size: 25px; cursor: pointer;
+
 }
+
+
 
 .carrinho-rodape {
+
     padding: 20px;
+
     border-top: 1px solid var(--dourado);
+
 }
+
+
 
 .botao-finalizar {
+
     display: block;
+
     background: var(--castanho);
+
     color: var(--creme);
+
     text-align: center;
+
     padding: 15px;
+
     text-decoration: none;
+
     font-weight: 600;
+
     transition: 0.3s;
+
     border: 1px solid var(--dourado);
+
 }
 
+
+
 .botao-finalizar:hover {
+
     background: var(--dourado);
+
     color: var(--castanho);
+
 }
+
+
+
+
 
 
 
 @media (max-width: 992px) {
+
   .cabecalho {
+
     padding: 1.25rem 4%;
+
   }
+
 }
 
+
+
 @media (max-width: 768px) {  
+
     .logo {
+
         font-size: 40px;
+
     }
+
+
 
     #menu-barras3 {
+
     display: inline-block;
+
   }
+
+
 
     .navegacao {
+
     position: fixed;
+
     top: 0;
-    right: 0;   
-    height: 100vh; 
+
+    right: 0;  
+
+    height: 100vh;
+
     width: 270px;
+
     z-index: 1000;
+
     background: var(--castanho);
+
     backdrop-filter: blur(20px);
+
     border-left: 2px solid rgba(255, 255, 255, .2);
+
     display: flex;
+
     flex-direction: column;
+
     text-align: center;  
+
     transform: translateX(100%);
+
     transition: transform 0.4s ease;
+
     box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+
   }
-  
+
+ 
+
     .navegacao-links {
+
     padding-top: 120px;
+
     align-items: center;
+
     }
+
+
 
     .navegacao.active {
+
     transform: translateX(0);
+
     }
+
+
 
     .navegacao a{
-    color: var(--creme); 
+
+    color: var(--creme);
+
     display: block;
+
     margin: 1.5rem 0;
+
     width: 100%;
+
     }
+
+
 
     .cascata {
+
         margin-left: 0;
+
         width: auto;
+
     }
+
+
 
     /* O botão mantém o estilo, mas com a cor do mobile */
+
     .botao-cascata {
+
         color: var(--creme);
+
         width: 100%;
+
     }
+
+
 
     /* CONTEÚDO IGUAL AO PC: Flutuante */
+
     .cascata-conteudo {
+
         z-index: 2000; /* Acima de tudo */
+
     }
 
+
+
     /* Links dentro do dropdown no mobile */
+
     .cascata-conteudo a {
+
         margin: 0 !important;
+
     }
-    
+
+   
+
 }
