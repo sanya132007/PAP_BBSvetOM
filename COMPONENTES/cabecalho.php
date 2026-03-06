@@ -58,7 +58,7 @@
 
         <div class="carrinho-rodape">
             <div class="total">Total: 0.00€</div>
-            <a href="../carrinho.php" class="botao-finalizar">FINALIZAR COMPRA</a>
+            <a href="../carrinho.php" class="botao-finalizar">IR PARA O CARRINHO</a>
         </div>
     </div>
 
