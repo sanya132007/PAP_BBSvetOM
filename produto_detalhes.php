@@ -65,13 +65,16 @@ if (!$p) {
                     <p><?= nl2br($p['descricao']) ?></p>
                 </div>
 
-                <?php 
-                    $texto_wa = ($p['disponivel'] == 1) ? "Gostaria de comprar a peça: " : "Gostaria de encomendar a peça: ";
-                    $btn_label = ($p['disponivel'] == 1) ? "Comprar via WhatsApp" : "Encomendar via WhatsApp";
-                ?>
-                <a href="https://wa.me/351938069479?text=Olá! <?= $texto_wa . urlencode($p['nome']) ?>" class="botao">
-                    <i class="fab fa-whatsapp" style="margin-right: 10px; font-size: 1.2rem;"></i> <?= $btn_label ?>
-                </a>            
+                <form action="PROCESOS/process_adicionar_carrinho.php" method="POST" class="form-carrinho"> 
+
+                <input type="hidden" name="id_produto" value="<?= $p['id'] ?>">
+
+                <button type="submit" class="botao-carrinho"> 
+                    <i class="fas fa-shopping-bag"></i> Adicionar ao carrinho
+                </button>
+
+                </form>
+
             </div>
         </div>
     </div>
