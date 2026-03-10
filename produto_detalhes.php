@@ -65,10 +65,7 @@ if (!$p) {
                     <p><?= nl2br($p['descricao']) ?></p>
                 </div>
 
-                <form action="PROCESSOS/process_carrinho_adicionar.php" method="POST"> 
-                    <input type="hidden" name="produto_id" value="<?= $p['id'] ?>">
-                    <button type="submit">Adicionar ao carrinho</button>
-                </form>
+                <button type="button" onclick="adicionarProduto(<?= $p['id'] ?>)">Adicionar ao carrinho</button>
 
             </div>
         </div>

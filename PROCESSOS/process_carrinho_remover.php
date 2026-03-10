@@ -1,16 +1,26 @@
 <?php
 session_start();
 
-if(isset($_GET['id'])){
-    $id = (int)$_GET['id'];
+if(!isset($_GET['id'])){
+    echo json_encode(['status'=>'erro', 'mensagem'=>'Produto inválido']);
+    exit;
+}
 
-    if(isset($_SESSION['carrinho'])){
-        $_SESSION['carrinho'] = array_filter(
-            $_SESSION['carrinho'],
-            fn($pid) => $pid !== $id
-        );
+$id = (int)$_GET['id'];
+
+if(isset($_SESSION['carrinho'][$id])){
+    $_SESSION['carrinho'][$id] -= 1;
+    if($_SESSION['carrinho'][$id] <= 0){
+        unset($_SESSION['carrinho'][$id]);
     }
 }
 
-header("Location: ../carrinho.php");
-exit;
+$isAjax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+          strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+
+if($isAjax){
+    echo json_encode(['status'=>'sucesso']);
+} else {
+    header("Location: ../carrinho.php");
+    exit;
+}

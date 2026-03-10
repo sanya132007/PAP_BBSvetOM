@@ -38,7 +38,7 @@
 
     box-sizing: border-box;
 
-    background: rgba(255, 255, 255, 0.1);
+    background: #4f3c2e95;
 
     backdrop-filter: blur(20px);
 
@@ -422,7 +422,6 @@
 
     padding: 20px;
 
-    border-top: 1px solid var(--dourado);
 
 }
 
@@ -431,6 +430,7 @@
 .botao-finalizar {
 
     display: block;
+    margin-top: 10px;
 
     background: var(--castanho);
 

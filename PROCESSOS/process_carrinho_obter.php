@@ -1,51 +1,21 @@
 <?php
-
 session_start();
+include("../BASE_DE_DADOS/ligacao_bd.php");
 
-include '../BASE_DE_DADOS/ligacao_bd.php';
+$carrinho = $_SESSION['carrinho'] ?? [];
+$result = [];
 
-
-
-if (!isset($_SESSION['id_utilizador'])) {
-
-    echo json_encode([]);
-
-    exit;
-
+foreach($carrinho as $id => $quantidade){
+    $stmt = $pdo->prepare("SELECT id, nome, preco, imagem_capa FROM produtos WHERE id = ?");
+    $stmt->execute([$id]);
+    $produto = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($produto){
+        if(!$produto['imagem_capa']) $produto['imagem_capa'] = 'default.jpg'; // só por segurança
+        $produto['quantidade'] = $quantidade;
+        $result[] = $produto;
+    }
 }
 
-
-
-$id_user = $_SESSION['id_utilizador'];
-
-
-
-try {
-
-    $sql = "SELECT c.id_carrinho, p.nome, p.preco, p.imagem_capa
-
-            FROM carrinho c
-
-            INNER JOIN produtos p ON c.id_produto = p.id_produto
-
-            WHERE c.id_utilizador = ?";
-
-           
-
-    $stmt = $pdo->prepare($sql);
-
-    $stmt->execute([$id_user]);
-
-    $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-
-    echo json_encode($resultado);
-
-} catch (PDOException $e) {
-
-    echo json_encode(['erro' => $e->getMessage()]);
-
-}
-
-?>
+header('Content-Type: application/json');
+echo json_encode($result);
+exit;

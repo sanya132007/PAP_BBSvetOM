@@ -27,21 +27,22 @@ function abrirCarrinho() {
                 let total = 0;
                 
                 if (data.length === 0) {
-                    corpo.innerHTML = '<p style="text-align:center; padding:20px;">Vazio</p>';
+                    corpo.innerHTML = '<p style="text-align:center; padding:20px;">O seu carrinho está vazio</p>';
                     document.querySelector('.total').innerText = "Total: 0.00€";
                     return;
                 }
 
                 corpo.innerHTML = '';
                 data.forEach(item => {
-                    total += parseFloat(item.preco);
+                    total += parseFloat(item.preco) * item.quantidade;
                     corpo.innerHTML += `
-                        <div style="display:flex; gap:10px; margin-bottom:10px; border-bottom:1px solid #ddd; padding-bottom:5px;">
-                            <img src="../ANEXOS/${item.imagem_capa}" style="width:50px;">
+                        <div style="display:flex; gap:10px; border-bottom:1px solid #D1A75E; padding-bottom:10px; padding-top:10px; margin-left:10px; margin-right:10px;">
+                            <img src="../ANEXOS/${item.imagem_capa}" style="width:80px;">
                             <div>
                                 <p style="margin:0; font-size:12px;">${item.nome}</p>
-                                <p style="margin:0; font-weight:bold;">${item.preco}€</p>
+                                <p style="margin:0; font-weight:bold;">${parseFloat(item.preco).toFixed(2)}€ x ${item.quantidade}</p>
                             </div>
+                            <button onclick="removerDoCarrinho(${item.id})" style="margin-left:auto; background:none; border:none; color:red; cursor:pointer;">&times;</button>
                         </div>`;
                 });
                 document.querySelector('.total').innerText = "Total: " + total.toFixed(2) + "€";
