@@ -8,10 +8,13 @@ if(isset($_POST['produto_id'])){
         $_SESSION['carrinho'] = [];
     }
 
-    if(!in_array($produto_id, $_SESSION['carrinho'])){
-        $_SESSION['carrinho'][] = $produto_id;
-    }
+    if(isset($_SESSION['carrinho'][$id])){
+            $_SESSION['carrinho'][$id] += 1;
+        } else {
+            $_SESSION['carrinho'][$id] = 1;
+        }
 }
 
-header("Location: ../carrinho.php");
+header('Content-Type: application/json');
+echo json_encode(['status'=>'sucesso']);
 exit;
