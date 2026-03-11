@@ -29,4 +29,4 @@
 
 
 
-<script src="CABECALHO/cabecalho.js"></script>
+<script src="CABECALHO/cabecalho_admin.js"></script>
