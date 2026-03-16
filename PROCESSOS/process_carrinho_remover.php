@@ -12,7 +12,9 @@ $id_produto = (int)$_GET['id'];
 $stmt = $pdo->prepare("
     SELECT quantidade 
     FROM carrinho 
-    WHERE id_cliente = :cliente AND id_produto = :produto
+    WHERE id_cliente = :cliente 
+    AND id_produto = :produto
+    LIMIT 1
 ");
 
 $stmt->execute([
@@ -33,7 +35,9 @@ if($item['quantidade'] > 1){
     $stmt = $pdo->prepare("
         UPDATE carrinho 
         SET quantidade = quantidade - 1 
-        WHERE id_cliente = :cliente AND id_produto = :produto
+        WHERE id_cliente = :cliente 
+        AND id_produto = :produto
+        LIMIT 1
     ");
 
 } else {
@@ -41,7 +45,9 @@ if($item['quantidade'] > 1){
     /* remove produto */
     $stmt = $pdo->prepare("
         DELETE FROM carrinho 
-        WHERE id_cliente = :cliente AND id_produto = :produto
+        WHERE id_cliente = :cliente 
+        AND id_produto = :produto
+        LIMIT 1
     ");
 
 }
