@@ -65,7 +65,7 @@ $carrinho = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <a href="vitrine.php" class="botao-vitrine">Aceder a vitrine</a>
             <div class="total-e-finalizar-compra">
                 <p class="total-carrinho">Total: <span><?php echo number_format($total,2) . "€"; ?></span></p>
-                <a href="finalizar-compra.php" class="botao-finalizar-compra">Finalizar Compra</a>
+                <a href="finalizar_compra.php" class="botao-finalizar-compra">Finalizar Compra</a>
             </div>
         </div>
     <?php endif; ?>
