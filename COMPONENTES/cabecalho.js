@@ -76,8 +76,8 @@ function adicionarProduto(id) {
 }
 
 
-function removerDoCarrinho(id_carrinho) {
-    fetch('PROCESSOS/process_carrinho_remover.php?id=' + id_carrinho)
+function removerDoCarrinho(id_produto) {
+    fetch('PROCESSOS/process_carrinho_remover.php?id=' + id_produto)
         .then(() => {
             abrirCarrinho(); 
         });

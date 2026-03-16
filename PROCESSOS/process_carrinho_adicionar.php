@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+header('Content-Type: application/json');
+
 include("../BASE_DE_DADOS/ligacao_bd.php");
 
 if(!isset($_SESSION['cliente_id'])) {
@@ -17,6 +20,18 @@ if(!isset($_POST['id_produto'])){
 $id_produto = (int)$_POST['id_produto'];
 
 try {
+
+    $check = $pdo->prepare("SELECT id FROM produtos WHERE id = ?");
+    $check->execute([$id_produto]);
+
+    if($check->rowCount() == 0){
+        echo json_encode([
+            'status'=>'erro',
+            'mensagem'=>'Produto inexistente'
+        ]);
+        exit;
+    }
+
     $sql = "INSERT INTO carrinho (id_cliente, id_produto, quantidade, data_adicionado)
             VALUES (:cliente, :produto, 1, NOW())
             ON DUPLICATE KEY UPDATE quantidade = quantidade + 1, data_adicionado = NOW()";
