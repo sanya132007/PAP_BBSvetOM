@@ -1,26 +1,14 @@
 <?php
 session_start();
+include("../BASE_DE_DADOS/ligacao_bd.php");
 
-if(!isset($_GET['id'])){
-    echo json_encode(['status'=>'erro', 'mensagem'=>'Produto inválido']);
+if(!isset($_SESSION['cliente_id']) || !isset($_GET['id'])) {
     exit;
 }
 
-$id = (int)$_GET['id'];
+$cliente_id = (int)$_SESSION['cliente_id'];
+$id_produto = (int)$_GET['id'];
 
-if(isset($_SESSION['carrinho'][$id])){
-    $_SESSION['carrinho'][$id] -= 1;
-    if($_SESSION['carrinho'][$id] <= 0){
-        unset($_SESSION['carrinho'][$id]);
-    }
-}
-
-$isAjax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
-          strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
-
-if($isAjax){
-    echo json_encode(['status'=>'sucesso']);
-} else {
-    header("Location: ../carrinho.php");
-    exit;
-}
+$stmt = $pdo->prepare("DELETE FROM carrinho WHERE id_cliente = :cliente AND id_produto = :produto");
+$stmt->execute(['cliente' => $cliente_id, 'produto' => $id_produto]);
+exit;

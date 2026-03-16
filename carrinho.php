@@ -1,34 +1,69 @@
 <?php
 session_start();
 include("BASE_DE_DADOS/ligacao_bd.php");
+include("COMPONENTES/cabecalho.php");
+
+if (!isset($_SESSION['cliente_id'])) {
+    header("Location: login_registro.php?erro=acesso_negado");
+    exit();
+}
 
 $carrinho = $_SESSION['carrinho'] ?? [];
 $total = 0;
-
-echo "<h1>Carrinho</h1>";
-
-if(empty($carrinho)){
-    echo "<p>O seu carrinho está vazio.</p>";
-} else {
-    foreach($carrinho as $id => $quantidade){
-        $stmt = $pdo->prepare("SELECT id, nome, preco, imagem_capa FROM produtos WHERE id=?");
-        $stmt->execute([$id]);
-        $produto = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if(!$produto) continue;
-
-        $subtotal = $produto['preco'] * $quantidade;
-        $total += $subtotal;
-
-        echo "<div style='display:flex; align-items:center; gap:15px; border-bottom:1px solid #D1A75E; padding:20px 20px;'>";
-        echo "<img src='ANEXOS/" . htmlspecialchars($produto['imagem_capa']) . "' style='width:100px;'>";
-        echo "<div>";
-        echo "<p>" . htmlspecialchars($produto['nome']) . "</p>";
-        echo "<p>" . number_format($produto['preco'],2) . "€ x $quantidade = " . number_format($subtotal,2) . "€</p>";
-        echo "</div>";
-        echo "<a href='PROCESSOS/process_carrinho_remover.php?id={$produto['id']}' style='margin-left:auto; color:red; text-decoration:none;'>&times;</a>";
-        echo "</div>";
-    }
-    echo "<p style='margin-top:20px; font-weight:bold;'>Total: " . number_format($total,2) . "€</p>";
-}
 ?>
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho | BBSvetOM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="RECURSOS/CSS/carrinho.css">
+</head>
+<body>
+<div class="caixa-fundo">
+    <div class="carrinho-titulo">
+    <h1>Carrinho</h1>
+    </div>
+
+    <?php if(empty($carrinho)): ?>
+        <p class="mensagem-carrinho-vazio">O seu carrinho está vazio.</p>
+        <a href="vitrine.php" class="botao-vitrine">Aceder a vitrine</a>
+    <?php else: ?>
+        <ul class="lista-carrinho">
+            <?php foreach($carrinho as $id => $quantidade):
+                $stmt = $pdo->prepare("SELECT id, nome, preco, imagem_capa FROM produtos WHERE id=?");
+                $stmt->execute([$id]);
+                $produto = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if(!$produto) continue;
+
+                $subtotal = $produto['preco'] * $quantidade;
+                $total += $subtotal;
+            ?>
+            
+            <li class="produto-carrinho">
+                <img src="ANEXOS/<?php echo htmlspecialchars($produto['imagem_capa']); ?>" alt="Capa">
+                <div class="produto-detalhes">
+                    <h3><?php echo htmlspecialchars($produto['nome']); ?></h3>
+                    <p><?php echo number_format($produto['preco'],2) . "€ x $quantidade = " . number_format($subtotal,2) . "€"; ?></p>
+                    <span class="subtotal-produto"><?php echo "Subtotal: " . number_format($subtotal,2) . "€"; ?></span>
+                </div>
+                <a href='PROCESSOS/process_carrinho_remover.php?id=<?php echo $produto['id']; ?>' class="botao-remover">&times;</a>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+
+        <div class="conclusao-carrinho">
+            <a href="vitrine.php" class="botao-vitrine">Aceder a vitrine</a>
+            <div class="total-e-finalizar-compra">
+                <p class="total-carrinho">Total: <span><?php echo number_format($total,2) . "€"; ?></span></p>
+                <a href="finalizar-compra.php" class="botao-finalizar-compra">Finalizar Compra</a>
+            </div>
+        </div>
+    <?php endif; ?>
+</div>
+</body>
+</html>

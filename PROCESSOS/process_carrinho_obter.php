@@ -2,19 +2,22 @@
 session_start();
 include("../BASE_DE_DADOS/ligacao_bd.php");
 
-$carrinho = $_SESSION['carrinho'] ?? [];
-$result = [];
-
-foreach($carrinho as $id => $quantidade){
-    $stmt = $pdo->prepare("SELECT id, nome, preco, imagem_capa FROM produtos WHERE id = ?");
-    $stmt->execute([$id]);
-    $produto = $stmt->fetch(PDO::FETCH_ASSOC);
-    if($produto){
-        if(!$produto['imagem_capa']) $produto['imagem_capa'] = 'default.jpg'; // só por segurança
-        $produto['quantidade'] = $quantidade;
-        $result[] = $produto;
-    }
+if(!isset($_SESSION['cliente_id'])) {
+    echo json_encode([]);
+    exit;
 }
+
+$cliente_id = (int)$_SESSION['cliente_id'];
+
+$stmt = $pdo->prepare("
+    SELECT p.id, p.nome, p.preco, p.imagem_capa, SUM(c.quantidade) AS quantidade
+    FROM carrinho c
+    JOIN produtos p ON p.id = c.id_produto
+    WHERE c.id_cliente = :cliente
+    GROUP BY p.id, p.nome, p.preco, p.imagem_capa
+");
+$stmt->execute(['cliente' => $cliente_id]);
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 header('Content-Type: application/json');
 echo json_encode($result);

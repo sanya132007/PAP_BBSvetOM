@@ -1,0 +1,116 @@
+:root {
+    --dourado: #D1A75E;
+    --castanho: #4F3C2E;
+    --creme: #FAF2D9;
+    --branco: #ffffff;
+    --preto:#000000;
+    --cinza:#666;
+    --vermelho:#e74c3c;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: var(--castanho);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.carrinho-titulo{
+    border-bottom: 1px solid var(--dourado); 
+}
+
+.caixa-fundo {
+    width: 100%;
+    max-width: 1200px;
+    margin: 130px auto 40px;
+    background: var(--creme);
+    border: 2.5px solid var(--dourado);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.39);
+    padding: 40px;
+}
+
+.lista-carrinho {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.produto-carrinho {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    border-bottom: 1px solid var(--dourado); 
+    transition: 0.3s ease;
+}
+
+.produto-carrinho:hover {
+    background-color: rgba(209, 167, 94, 0.273);
+}
+
+.produto-carrinho img {
+    max-width: 100px;
+    border: 1px solid var(--dourado);
+}
+
+.produto-detalhes h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--castanho);
+}
+
+
+
+.botao-vitrine,
+.botao-finalizar-compra{
+    display: inline-block;
+    background-color: var(--castanho);
+    color: var(--creme);
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 2px solid var(--dourado);
+    text-align: center;
+}
+
+.botao-vitrine:hover,
+.botao-finalizar-compra:hover {
+    background-color: var(--dourado);
+    color: var(--castanho);
+    cursor: pointer;
+}
+
+.botao-remover {
+    margin-left: auto;
+    color: var(--vermelho);
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.botao-remover:hover {
+    transform: scale(1.2);
+}
+
+.conclusao-carrinho {
+    margin-top: 30px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-e-finalizar-compra {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.total-carrinho {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--castanho);
+
+}
