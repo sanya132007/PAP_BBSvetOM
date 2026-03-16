@@ -8,8 +8,19 @@ if (!isset($_SESSION['cliente_id'])) {
     exit();
 }
 
-$carrinho = $_SESSION['carrinho'] ?? [];
 $total = 0;
+
+$stmt = $pdo->prepare("
+    SELECT p.id, p.nome, p.preco, p.imagem_capa, SUM(c.quantidade) AS quantidade
+    FROM carrinho c
+    JOIN produtos p ON p.id = c.id_produto
+    WHERE c.id_cliente = ?
+    GROUP BY p.id, p.nome, p.preco, p.imagem_capa
+");
+$stmt->execute([$_SESSION['cliente_id']]);
+
+$carrinho = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -33,25 +44,19 @@ $total = 0;
         <a href="vitrine.php" class="botao-vitrine">Aceder a vitrine</a>
     <?php else: ?>
         <ul class="lista-carrinho">
-            <?php foreach($carrinho as $id => $quantidade):
-                $stmt = $pdo->prepare("SELECT id, nome, preco, imagem_capa FROM produtos WHERE id=?");
-                $stmt->execute([$id]);
-                $produto = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                if(!$produto) continue;
-
-                $subtotal = $produto['preco'] * $quantidade;
-                $total += $subtotal;
+            <?php foreach($carrinho as $produto):
+            $subtotal = $produto['preco'] * $produto['quantidade']  ;
+            $total += $subtotal;
             ?>
             
             <li class="produto-carrinho">
                 <img src="ANEXOS/<?php echo htmlspecialchars($produto['imagem_capa']); ?>" alt="Capa">
                 <div class="produto-detalhes">
                     <h3><?php echo htmlspecialchars($produto['nome']); ?></h3>
-                    <p><?php echo number_format($produto['preco'],2) . "€ x $quantidade = " . number_format($subtotal,2) . "€"; ?></p>
+                    <p><?php echo number_format($produto['preco'],2,',', '.') . "€ x " . $produto['quantidade'] . " = " . number_format($subtotal,2) . "€"; ?></p>
                     <span class="subtotal-produto"><?php echo "Subtotal: " . number_format($subtotal,2) . "€"; ?></span>
                 </div>
-                <a href='PROCESSOS/process_carrinho_remover.php?id=<?php echo $produto['id']; ?>' class="botao-remover">&times;</a>
+                <button class="botao-remover" onclick="removerDoCarrinhoPagina(<?php echo $produto['id']; ?>)">&times;</button>
             </li>
             <?php endforeach; ?>
         </ul>
@@ -65,5 +70,19 @@ $total = 0;
         </div>
     <?php endif; ?>
 </div>
+
+<script>
+
+function removerDoCarrinhoPagina(id){
+
+fetch('PROCESSOS/process_carrinho_remover.php?id=' + id)
+.then(() => {
+location.reload();
+});
+
+}
+
+</script>
+
 </body>
 </html>
