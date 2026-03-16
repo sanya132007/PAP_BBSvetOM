@@ -53,7 +53,7 @@ $carrinho = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <img src="ANEXOS/<?php echo htmlspecialchars($produto['imagem_capa']); ?>" alt="Capa">
                 <div class="produto-detalhes">
                     <h3><?php echo htmlspecialchars($produto['nome']); ?></h3>
-                    <p><?php echo number_format($produto['preco'],2,',', '.') . "€ x " . $produto['quantidade'] . " = " . number_format($subtotal,2) . "€"; ?></p>
+                    <p><?php echo number_format($produto['preco'],2,',', '.') . "€ x " . $produto['quantidade'];?></p>
                     <span class="subtotal-produto"><?php echo "Subtotal: " . number_format($subtotal,2) . "€"; ?></span>
                 </div>
                 <button class="botao-remover" onclick="removerDoCarrinhoPagina(<?php echo $produto['id']; ?>)">&times;</button>

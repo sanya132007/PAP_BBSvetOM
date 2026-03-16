@@ -17,7 +17,9 @@ body {
 }
 
 .carrinho-titulo{
-    border-bottom: 1px solid var(--dourado); 
+    border-bottom: 1px solid var(--dourado);
+    color: var(--castanho); 
+    font-family: 'Playfair Display', serif;
 }
 
 .caixa-fundo {
@@ -27,7 +29,7 @@ body {
     background: var(--creme);
     border: 2.5px solid var(--dourado);
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.39);
-    padding: 40px;
+    padding: 30px 40px;
 }
 
 .lista-carrinho {

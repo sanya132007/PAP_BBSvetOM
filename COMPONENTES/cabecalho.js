@@ -41,8 +41,9 @@ function abrirCarrinho() {
                         <div style="display:flex; gap:10px; border-bottom:1px solid #D1A75E; padding-bottom:10px; padding-top:10px; margin-left:10px; margin-right:10px;">
                             <img src="ANEXOS/${item.imagem_capa}" style="width:80px; margin-left:10px;" alt="${item.nome}">
                             <div>
-                                <p style="margin:0; font-size:12px;">${item.nome}</p>
-                                <p style="margin:0; font-weight:bold;">${parseFloat(item.preco).toFixed(2)}€ x ${item.quantidade}</p>
+                                <p style="color:#4F3C2E; margin:5px; font-size:12px;font-weight:bold;">${item.nome}</p>
+                                <p style="margin:5px;">${parseFloat(item.preco).toFixed(2)}€ x ${item.quantidade}</p>
+                                <p style="margin:5px;">Subtotal: ${(item.preco * item.quantidade).toFixed(2)}€</p>
                             </div>
                             <button onclick="removerDoCarrinho(${item.id})" style="margin-left:auto; margin-right:10px; background:none; border:none; color:red; cursor:pointer;">&times;</button>
                         </div>`;
