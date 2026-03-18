@@ -39,7 +39,7 @@ function abrirCarrinho() {
                     total += parseFloat(item.preco) * item.quantidade;
                     corpo.innerHTML += `
                         <div style="display:flex; gap:10px; border-bottom:1px solid #D1A75E; padding-bottom:10px; padding-top:10px; margin-left:10px; margin-right:10px;">
-                            <img src="ANEXOS/${item.imagem_capa}" style="width:80px; margin-left:10px;" alt="${item.nome}">
+                            <img src="ANEXOS/${item.imagem_capa}" style="max-width: 100px; margin-left:10px;" alt="${item.nome}">
                             <div>
                                 <p style="color:#4F3C2E; margin:5px; font-size:12px;font-weight:bold;">${item.nome}</p>
                                 <p style="margin:5px;">${parseFloat(item.preco).toFixed(2)}€ x ${item.quantidade}</p>
